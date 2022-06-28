@@ -1,68 +1,55 @@
-import { Alert, AlertIcon, Box, ButtonGroup, Flex, Heading, Stack, VStack, Image, useColorModeValue } from '@chakra-ui/react'
-import { Paragraph } from '../@commons/Paragraph'
-import { Page } from '../@layout/Page'
+import { Alert, AlertIcon, Box, ButtonGroup, Flex, Heading, Image, useColorModeValue, VStack } from '@chakra-ui/react'
+import { SimpleLink } from 'components/@commons/SimpleLink'
 import React from 'react'
-import { LinkButton } from '../@commons/LinkButton'
-import { ImageCarousel } from '../@commons/ImageCarousel'
-import { Schedule } from '../@commons/Schedule'
-import { EVENTS } from '../../content/events'
 import { Helmet } from 'react-helmet'
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa'
 import customTheme from '../../utils/customTheme'
-import { MapImage } from 'types/MapImage'
-
-const MAP_IMAGES: MapImage[] = [
-  { light: '/img/maps/I_light.png', dark: '/img/maps/I_dark.png' },
-  { light: '/img/maps/1_light.png', dark: '/img/maps/1_dark.png' },
-  { light: '/img/maps/SCH_light.png', dark: '/img/maps/SCH_dark.png' }
-]
+import { LinkButton } from '../@commons/LinkButton'
+import { Paragraph } from '../@commons/Paragraph'
+import { Schedule } from '../@commons/Schedule'
+import { Page } from '../@layout/Page'
 
 export const Home: React.FC = () => {
   return (
     <Page>
       <Helmet />
       <Heading size="3xl" textAlign="center" marginTop={10}>
-        Üdvözlünk a{' '}
-        <Heading as="span" color={useColorModeValue('brand.500', 'brand.600')} size="3xl">
-          GólyaKörTe
+        Üdv az{' '}
+        <Heading as="span" color={useColorModeValue('brand.500', 'brand.400')} size="3xl">
+          SNYT 2022
         </Heading>{' '}
-        portálon
+        portálon!
       </Heading>
       <Flex align="center">
         <BlockQuote quoteMarkSize={4}>
-          <Paragraph>Kedves Gólyák!</Paragraph>
-          <Paragraph>Köszöntünk titeket a 2022-es GólyaKörTe honlapján!</Paragraph>
+          <Paragraph>Kedves Szakkollégisták!</Paragraph>
           <Paragraph>
-            A GólyaKörTe egy olyan program sorozat, amelynek segítségével a VIK-es körök bemutatkozhatnak nektek, hogy megismerjétek a
-            munkájukat. A rendezvény segíti a közéletben való elhelyezkedést és lehetőséget ad, hogy kipróbáljatok új dolgokat vagy akár a
-            meglévő érdeklődéseiteket elmélyítsétek.
+            Idén is szeretettel vár minden szakkollégiumi tagot, öregtagot és újoncot a Simonyi Nyári Tábor, ezúttal Patcán, a Katica
+            Tanyán. 🐞 A szokásos 📑workshopok 👵👴öregavatás 🍷borkóstolás 🤸‍♀️vetélkedők 👨‍💼👩‍💼elnökválasztás mellett idén készülük olyan új,
+            izgalmas programokkal is, mint ✨ éjszakai túra 🐄 élményközpont látogatás és ezen felül is rengeteg program, jókedv, barátok
+            várnak majd a táborban! 😉
           </Paragraph>
-          <Paragraph>Biztatunk titeket, hogy vegyetek részt a Gólyakörtén és találjátok meg az új hobbitokat!</Paragraph>
-          <Paragraph fontStyle="italic">
+          <Paragraph>
+            Helyszín és hozzá Maps navigáció:{' '}
+            <SimpleLink href="https://g.page/katica-tanya-patca?share" isExternal>
+              Patca, Hrsz 025, 7477
+            </SimpleLink>{' '}
+            Katica Tanya.
+          </Paragraph>
+          <Paragraph>
             Üdv,
             <br />
-            Főrendezők
+            Főrendezők 🐐🐓🐑🐄🐎🐖🦆
           </Paragraph>
         </BlockQuote>
         <Image src="/img/big_stork_logo.png" h="30rem" display={{ base: 'none', md: 'block' }} />
       </Flex>
-      <Stack justifyContent="center" marginTop={20} direction="column" alignItems="center">
-        <LinkButton href="/korok" colorScheme="brand" size="lg">
-          Körök listája
-        </LinkButton>
-        <LinkButton href="/reszortok" colorScheme="brand" size="lg" variant="ghost">
-          Reszortok listája
-        </LinkButton>
-      </Stack>
       <Heading as="h2" size="lg" marginTop={20} textAlign="center">
         Információk
       </Heading>
       <ButtonGroup marginTop={10} justifyContent="center">
         <LinkButton external newTab={false} href="#esemenyek" variant="outline" colorScheme="brand">
           Események
-        </LinkButton>
-        <LinkButton external newTab={false} href="#terkepek" variant="outline" colorScheme="brand">
-          Térképek
         </LinkButton>
       </ButtonGroup>
       <Heading as="h2" size="lg" marginTop={20} textAlign="center">
@@ -86,11 +73,7 @@ export const Home: React.FC = () => {
       <Alert marginTop={10} variant="left-accent" width="fit-content" marginX="auto">
         <AlertIcon />A változás jogát fenntartjuk! Kísérd figyelemmel az oldal tetején megjelenő értesítéseket!
       </Alert>
-      <Schedule events={EVENTS} />
-      <Heading as="h2" size="lg" textAlign="center" marginTop={20} id="terkepek">
-        Térképek
-      </Heading>
-      <ImageCarousel images={MAP_IMAGES} />
+      <Schedule />
     </Page>
   )
 }
@@ -105,7 +88,7 @@ const BlockQuote: React.FC<BlockQuoteProps> = ({ children, quoteMarkSize }) => {
       px={quoteMarkSize / 2 + 'rem'}
       py={quoteMarkSize + 'rem'}
       marginTop={20}
-      color="gray.500"
+      color={useColorModeValue('gray.700', 'gray.300')}
       maxW={800}
       marginX="auto"
       align="flex-start"

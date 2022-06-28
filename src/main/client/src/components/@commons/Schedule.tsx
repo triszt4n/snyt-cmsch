@@ -1,39 +1,39 @@
-import React from 'react'
-import { Grid, GridItem, Text } from '@chakra-ui/react'
+import { Box, HStack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useBreakpointValue, VStack } from '@chakra-ui/react'
 import { useColorModeValue } from '@chakra-ui/system'
-import { Event } from '../../types/Event'
+import { EVENTS } from 'content/events'
 
-type ScheduleProps = {
-  events: Event[]
-}
-export const Schedule: React.FC<ScheduleProps> = ({ events }) => {
+export const Schedule = () => {
+  const keys = Array.from(EVENTS.keys())
   return (
-    <Grid templateColumns="repeat(2, auto)" gap={10} marginTop={10}>
-      {events.map((event, idx) => (
-        <EventDisplay key={idx} event={event} />
-      ))}
-    </Grid>
-  )
-}
+    <Tabs isFitted mt={4}>
+      <TabList>
+        {keys.map((key) => (
+          <Tab>{useBreakpointValue({ base: key.substring(0, key === 'Csütörtök' ? 4 : 3) + '.', sm: key })}</Tab>
+        ))}
+      </TabList>
 
-type EventDisplayProps = {
-  event: Event
-}
-
-const EventDisplay: React.FC<EventDisplayProps> = ({ event }) => {
-  return (
-    <>
-      <GridItem textAlign="right">
-        <Text fontSize="2xl" color={useColorModeValue('brand.500', 'brand.600')}>
-          {event.start}-{event.end}
-        </Text>
-      </GridItem>
-      <GridItem>
-        <Text fontSize="2xl">{event.name}</Text>
-        <Text as="i" fontSize="xl" color="gray.500">
-          {event.location}
-        </Text>
-      </GridItem>
-    </>
+      <TabPanels>
+        {keys.map((key) => (
+          <TabPanel key={key}>
+            <VStack gap={4}>
+              {EVENTS.get(key)!.map((event, idx) => (
+                <HStack gap={4} key={idx} fontSize="xl">
+                  <Box textAlign="right">
+                    <Text color={useColorModeValue('brand.500', 'brand.600')}>
+                      {event.start}-{event.end}
+                    </Text>
+                  </Box>
+                  <HStack flexDir={{ base: 'column', md: 'row' }}>
+                    <Text>{event.name}</Text>
+                    <Text display={{ base: 'none', md: 'inline' }}>&bull;</Text>
+                    <Text color="gray.500">{event.location}</Text>
+                  </HStack>
+                </HStack>
+              ))}
+            </VStack>
+          </TabPanel>
+        ))}
+      </TabPanels>
+    </Tabs>
   )
 }

@@ -1,28 +1,22 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import * as React from 'react'
-import customTheme from './utils/customTheme'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Home } from './components/@pages/Home'
-import { ResortList } from './components/@pages/ResortList'
-import { CommunityPage } from './components/@pages/CommunityPage'
-import { ResortPage } from './components/@pages/ResortPage'
-import { CommunityList } from './components/@pages/CommunityList'
+import { IndexLayout } from 'components/@layout/IndexLayout'
 import { ProfilePage } from 'components/@pages/ProfilePage'
-import { AchievementCategoryList } from './components/@pages/AchievementCategoryList'
-import { AchievementCategoryPage } from './components/@pages/AchievementCategoryPage'
-import { AchievementPage } from './components/@pages/AchievementPage'
-import { RiddleCategoryList } from 'components/@pages/RiddleCategoryList'
-import { RiddlePage } from 'components/@pages/RiddlePage'
 import { QRList } from 'components/@pages/QRList'
 import { QRScan } from 'components/@pages/QRScan'
 import { QRScanResult } from 'components/@pages/QRScanResult'
-import { AuthProvider } from './utils/AuthContext'
+import { RiddleCategoryList } from 'components/@pages/RiddleCategoryList'
+import { RiddlePage } from 'components/@pages/RiddlePage'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { AchievementCategoryList } from './components/@pages/AchievementCategoryList'
+import { AchievementCategoryPage } from './components/@pages/AchievementCategoryPage'
+import { AchievementPage } from './components/@pages/AchievementPage'
 import { ErrorPage } from './components/@pages/ErrorPage'
-import { ServiceProvider } from './utils/ServiceContext'
-import { IndexLayout } from 'components/@layout/IndexLayout'
-import { ImpressumPage } from 'components/@pages/ImpressumPage'
-import './global.css'
 import { GroupSelectionPage } from './components/@pages/GroupSelectionPage'
+import { Home } from './components/@pages/Home'
+import './global.css'
+import { AuthProvider } from './utils/AuthContext'
+import customTheme from './utils/customTheme'
+import { ServiceProvider } from './utils/ServiceContext'
 
 export function App() {
   return (
@@ -40,18 +34,6 @@ export function App() {
                     <Route path="tankor-modositas" element={<GroupSelectionPage />} />
                     <Route index element={<ProfilePage />} />
                   </Route>
-                  {/*Reszortok*/}
-                  <Route path="reszortok">
-                    <Route path=":name">
-                      <Route index element={<ResortPage />} />
-                    </Route>
-                    <Route index element={<ResortList />} />
-                  </Route>
-                  {/*Körök*/}
-                  <Route path="korok">
-                    <Route path=":name" element={<CommunityPage />} />
-                    <Route index element={<CommunityList />} />
-                  </Route>
                   {/*Riddle*/}
                   <Route path="riddleok">
                     <Route path=":id" element={<RiddlePage />} />
@@ -68,10 +50,6 @@ export function App() {
                   <Route path="qr">
                     <Route index element={<QRList />} />
                     <Route path="scan" element={<QRScan />} />
-                  </Route>
-                  {/*Impressum*/}
-                  <Route path="impresszum">
-                    <Route index element={<ImpressumPage />} />
                   </Route>
                   {/*Error*/}
                   <Route path="error">

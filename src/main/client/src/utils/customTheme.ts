@@ -116,7 +116,7 @@ const customTheme = extendTheme({
     global: (props: any) => ({
       body: {
         color: mode('gray.900', 'whiteAlpha.900')(props),
-        bg: mode('white', 'gray.900')(props)
+        bg: mode('brand.50', 'brand.900')(props)
       }
     })
   },

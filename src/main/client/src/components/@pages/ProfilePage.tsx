@@ -100,7 +100,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = (props) => {
       <Flex justifyContent="space-between" flexDirection={{ base: 'column', sm: 'row' }}>
         <Box>
           <Heading>{profile?.fullName}</Heading>
-          <Text fontSize="3xl">Tankör: {profile?.groupName || 'nincs'}</Text>
+          <Text fontSize="3xl">Kör: {profile?.groupName || 'nincs'}</Text>
         </Box>
         <VStack py={2} alignItems="flex-end">
           {profile?.role && RoleType[profile.role] >= RoleType.STAFF && (
@@ -121,8 +121,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = (props) => {
       {!profile?.groupSelectionAllowed && (
         <Alert status="info" variant="left-accent" mt={5}>
           <AlertIcon />
-          Ha a tanköröd nem helyes, akkor az infópultnál állíttasd át a megfelelőre! A sikeres tanköri jelenlétről csak a jelzett tankör
-          tankörvezét fogjuk értesíteni.
+          Ha a köröd nem helyes, akkor az infópultnál állíttasd át a megfelelőre!
         </Alert>
       )}
       <PresenceAlert

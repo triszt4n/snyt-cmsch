@@ -1,106 +1,50 @@
-import * as React from 'react'
-import { Box, Flex, HStack, Icon, Image, Link, StackProps, Text, useColorModeValue, VStack, Wrap } from '@chakra-ui/react'
-import { BUGREPORT_URL, KIRDEV_URL } from 'utils/configurations'
+import { Box, Grid, GridItem, HStack, Icon, Image, Link, Text, useBreakpointValue, useColorModeValue, VStack } from '@chakra-ui/react'
 import { socialPages } from 'content/socialPages'
-import { FaHeart } from 'react-icons/fa'
-import { Container } from './Container'
+import * as React from 'react'
+import { KIRDEV_URL } from 'utils/configurations'
 import customTheme from '../../utils/customTheme'
-
-type ImpressumWrapItemProps = {
-  display: {
-    base?: string
-    md: string
-  }
-}
-const ImpressumWrapItem: React.FC<ImpressumWrapItemProps> = ({ display }) => {
-  return (
-    <FooterWrapItem display={display}>
-      <Box align="center">
-        <FooterBigImage src={`/img/${useColorModeValue('footer_logo.png', 'footer_logo_white.png')}`} />
-      </Box>
-      <HStack spacing={1} justify="center">
-        {socialPages.map((socialPage) => (
-          <HStack as={Link} _hover={{ color: customTheme.colors.kirDev }} href={socialPage.href} isExternal key={socialPage.label}>
-            <Icon as={socialPage.icon} boxSize="2rem" />
-          </HStack>
-        ))}
-      </HStack>
-      <Text marginBottom={3} align="center" fontSize="xl">
-        <Link textColor={customTheme.colors.kirDev} href="/impresszum">
-          Impresszum
-        </Link>
-      </Text>
-      <Box align="center">
-        <Text>@ kir-dev [at] sch.bme.hu</Text>
-        <Text>© 2022</Text>
-      </Box>
-    </FooterWrapItem>
-  )
-}
+import { Container } from './Container'
 
 export const Footer: React.FC = () => (
   <Box borderTopWidth={1} borderStyle="solid" borderColor={useColorModeValue('gray.200', 'gray.700')}>
     <Container>
-      <Wrap justify="space-between" spacing={2} align="center">
-        <FooterWrapItem>
-          <FooterBigImage src="/img/communities/sssl.svg" filter={useColorModeValue('', 'invert(100%)')} />
-          <HStack align="center">
-            <Link
-              isExternal
-              fontSize="xl"
-              _hover={{ color: customTheme.colors.kirDev, textDecorationLine: 'underline' }}
-              href="https://sssl.sch.bme.hu"
-            >
-              Weboldal
-            </Link>
-            <Text>|</Text>
-            <Link
-              isExternal
-              fontSize="xl"
-              _hover={{ color: customTheme.colors.kirDev, textDecorationLine: 'underline' }}
-              href="https://sssl.sch.bme.hu/contact"
-            >
-              Kapcsolat
-            </Link>
+      <Grid py={5} alignItems="center" templateColumns={`repeat(${useBreakpointValue({ base: '1', md: '3' })}, 1fr)`} gap={6}>
+        <GridItem as={VStack} w="100%">
+          <Image src={useColorModeValue('/img/communities/simonyi.svg', '/img/communities/simonyi-white.svg')} h="4rem" my={3} />
+          <Link
+            isExternal
+            fontSize="xl"
+            _hover={{ color: customTheme.colors.kirDev, textDecorationLine: 'underline' }}
+            href="https://simonyi.bme.hu"
+          >
+            Weboldal
+          </Link>
+        </GridItem>
+        <GridItem as={VStack} w="100%">
+          <Box align="center">
+            <Image h="10rem" src={`/img/${useColorModeValue('footer_logo.png', 'footer_logo_white.png')}`} />
+          </Box>
+          <HStack spacing={1} justify="center">
+            {socialPages.map((socialPage) => (
+              <HStack as={Link} _hover={{ color: customTheme.colors.kirDev }} href={socialPage.href} isExternal key={socialPage.label}>
+                <Icon as={socialPage.icon} boxSize="2rem" />
+              </HStack>
+            ))}
           </HStack>
-        </FooterWrapItem>
-        <ImpressumWrapItem key="bigDisplay" display={{ base: 'none', md: 'block' }} />
-        <FooterWrapItem>
-          <Flex direction="row" align="center">
-            <Text mr={2}>Made with</Text>
-            <FaHeart color="red" size="1.5rem" />
-            <Text ml={2}>by</Text>
-          </Flex>
-          <FooterBigImage src={useColorModeValue('/img/communities/kirdev.svg', '/img/communities/kirdev-white.svg')} />
+          <Box align="center">
+            <Text>@ snyt [at] simonyi.bme.hu</Text>
+            <Text>© Simonyi Károly Szakkollégium 2022</Text>
+          </Box>
+        </GridItem>
+        <GridItem as={VStack} w="100%">
+          <Image src={useColorModeValue('/img/communities/kirdev.svg', '/img/communities/kirdev-white.svg')} h="7rem" />
           <HStack align="center">
             <Link isExternal fontSize="xl" _hover={{ color: customTheme.colors.kirDev, textDecorationLine: 'underline' }} href={KIRDEV_URL}>
               Weboldal
             </Link>
-            <Text>|</Text>
-            <Link
-              isExternal
-              fontSize="xl"
-              _hover={{ color: customTheme.colors.kirDev, textDecorationLine: 'underline' }}
-              href={BUGREPORT_URL}
-            >
-              Kapcsolat
-            </Link>
           </HStack>
-        </FooterWrapItem>
-        <ImpressumWrapItem key="smallDisplay" display={{ md: 'none' }} />
-      </Wrap>
+        </GridItem>
+      </Grid>
     </Container>
   </Box>
 )
-
-const FooterWrapItem: React.FC<StackProps> = ({ children, ...props }) => {
-  return (
-    <VStack py={3} spacing={1} align="center" width={{ base: '100%', md: 'fit-content' }} {...props}>
-      {children}
-    </VStack>
-  )
-}
-
-const FooterBigImage: React.FC<{ src: string; filter?: string }> = ({ src, filter = '' }) => {
-  return <Image src={src} w="10rem" h="10rem" my={3} filter={filter} />
-}
