@@ -124,12 +124,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = (props) => {
           Ha a köröd nem helyes, akkor az infópultnál állíttasd át a megfelelőre!
         </Alert>
       )}
-      <PresenceAlert
-        acquired={profile.tokens.filter((token) => token.type === 'default').length}
-        needed={profile.minTokenToComplete}
-        mt={3}
-      />
-
       <Flex justify="center" alignItems="center" flexWrap="wrap" mt="10">
         <Center p={3}>
           <Flex direction="column" align="center">
