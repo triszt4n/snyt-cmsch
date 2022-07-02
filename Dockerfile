@@ -13,6 +13,6 @@ COPY gradlew .
 COPY build.gradle.kts .
 COPY settings.gradle.kts .
 
-RUN ./gradlew clean build
-ENTRYPOINT ["java", "-Dspring.profiles.include=docker", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseContainerSupport", "-XX:+UseSerialGC", "-XX:MaxRAMPercentage=90", "-jar", "/opt/cmsch/cmsch.jar"]
+RUN ./gradlew build
+ENTRYPOINT ["java", "-Dspring.profiles.include=docker", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseContainerSupport", "-XX:+UseSerialGC", "-XX:MaxRAMPercentage=90", "-jar", "build/libs/cmsch.jar"]
 EXPOSE 80
