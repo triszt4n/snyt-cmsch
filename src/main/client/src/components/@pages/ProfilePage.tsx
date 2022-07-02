@@ -1,4 +1,3 @@
-import { Page } from '../@layout/Page'
 import {
   Alert,
   AlertIcon,
@@ -19,12 +18,12 @@ import {
   WrapItem
 } from '@chakra-ui/react'
 import * as React from 'react'
+import { Helmet } from 'react-helmet'
 import { ProfileDTO, RoleType } from 'types/dto/profile'
+import { useAuthContext } from 'utils/useAuthContext'
 import { Loading } from '../../utils/Loading'
 import { LinkButton } from '../@commons/LinkButton'
-import { useAuthContext } from 'utils/useAuthContext'
-import { Helmet } from 'react-helmet'
-import { PresenceAlert } from 'components/@commons/PresenceAlert'
+import { Page } from '../@layout/Page'
 
 const challenges = (profile: ProfileDTO) => [
   {
