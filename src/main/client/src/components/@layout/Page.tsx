@@ -12,7 +12,8 @@ type PageProps = {
 export const Page: React.FC<PageProps> = ({ loginRequired, groupRequired, children, ...props }) => {
   const { isLoggedIn, profile } = useAuthContext()
   if (loginRequired && !isLoggedIn) return <UnauthorizedPage />
-  if (groupRequired && profile?.groupSelectionAllowed) return <Navigate to="/profil/tankor-modositas" />
+  if (groupRequired && profile?.groupSelectionAllowed && profile?.groupName === profile?.availableGroups[profile?.fallbackGroup])
+    return <Navigate to="/profil/tankor-modositas" />
   return (
     <>
       <Container {...props}>

@@ -18,8 +18,9 @@ export const GroupSelectionPage: React.FC = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setValue(profile?.fallbackGroup.toString())
-  }, [profile?.fallbackGroup])
+    if (!profile) return
+    setValue(profile.groupName || profile.availableGroups[profile.fallbackGroup])
+  }, [profile])
 
   const onSubmit = () => {
     if (value)
@@ -76,7 +77,7 @@ export const GroupSelectionPage: React.FC = () => {
               }}
             >
               {Object.entries<string>(profile.availableGroups).map((entry) => (
-                <option key={entry[0]} value={entry[0]}>
+                <option key={entry[0]} value={entry[1]}>
                   {entry[1]}
                 </option>
               ))}
