@@ -12,20 +12,27 @@ import { Page } from '../@layout/Page'
 
 export const GroupSelectionPage: React.FC = () => {
   const { profile, updateProfile } = useAuthContext()
-  const [value, setValue] = useState<string>()
+  const [value, setValue] = useState<number>()
   const [error, setError] = useState<string>()
   const { throwError } = useServiceContext()
   const navigate = useNavigate()
 
   useEffect(() => {
     if (!profile) return
-    setValue(profile.groupName || profile.availableGroups[profile.fallbackGroup])
+    let preset = profile.fallbackGroup
+    for (let pair of new Map(Object.entries(profile.availableGroups))) {
+      if (pair[1] === profile.groupName) {
+        preset = parseInt(pair[0])
+        break
+      }
+    }
+    setValue(preset)
   }, [profile])
 
   const onSubmit = () => {
     if (value)
       axios
-        .post<GroupChangeDTO>(`${API_BASE_URL}/api/group/select/${value}`)
+        .post<GroupChangeDTO>(`${API_BASE_URL}/api/group/select/${value}`) // this API is stupid
         .then((res) => {
           switch (res.data.status) {
             case GroupChangeStatus.OK:
@@ -73,11 +80,11 @@ export const GroupSelectionPage: React.FC = () => {
               id="group"
               value={value}
               onChange={(evt) => {
-                setValue(evt.target.value)
+                setValue(parseInt(evt.target.value))
               }}
             >
               {Object.entries<string>(profile.availableGroups).map((entry) => (
-                <option key={entry[0]} value={entry[1]}>
+                <option key={entry[0]} value={entry[0]}>
                   {entry[1]}
                 </option>
               ))}
