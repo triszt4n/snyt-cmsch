@@ -13,67 +13,61 @@ export const Home: React.FC = () => {
   return (
     <Page>
       <Helmet />
-      <Heading size="3xl" textAlign="center" marginTop={10}>
-        Üdv az{' '}
-        <Heading as="span" color={useColorModeValue('brand.500', 'brand.400')} size="3xl">
-          SNYT 2022
-        </Heading>{' '}
-        portálon!
-      </Heading>
-      <Flex align="center">
+      <Flex align="center" flexDirection={{ base: 'column-reverse', md: 'row' }} mt={10}>
         <BlockQuote quoteMarkSize={4}>
-          <Paragraph>Kedves Szakkollégisták!</Paragraph>
+          <Paragraph fontWeight={700}>Kedves Szakkollégisták!</Paragraph>
           <Paragraph>
             Idén is szeretettel vár minden szakkollégiumi tagot, öregtagot és újoncot a Simonyi Nyári Tábor, ezúttal Patcán, a Katica
-            Tanyán. 🐞 A szokásos 📑workshopok 👵👴öregavatás 🍷borkóstolás 🤸‍♀️vetélkedők 👨‍💼👩‍💼elnökválasztás mellett idén készülük olyan új,
-            izgalmas programokkal is, mint ✨ éjszakai túra 🐄 élményközpont látogatás és ezen felül is rengeteg program, jókedv, barátok
-            várnak majd a táborban! 😉
+            Tanyán. 🐞 A szokásos workshopok öregavatás borkóstolás vetélkedők elnökválasztás mellett idén készülük olyan új, izgalmas
+            programokkal is, mint éjszakai túra, élményközpont látogatás és ezen felül is rengeteg program, jókedv, barátok várnak majd a
+            táborban! 😉
           </Paragraph>
           <Paragraph>
             Helyszín és hozzá Maps navigáció:{' '}
-            <SimpleLink href="https://g.page/katica-tanya-patca?share" isExternal>
+            <SimpleLink href="https://g.page/katica-tanya-patca?share" isExternal color="brand.600">
               Patca, Hrsz 025, 7477
             </SimpleLink>{' '}
             Katica Tanya.
           </Paragraph>
           <Paragraph>
             Üdv,
-            <br />
-            Főrendezők 🐐🐓🐑🐄🐎🐖🦆
+            <br />a Főrendezők 🦆
           </Paragraph>
         </BlockQuote>
-        <Image src="/img/big_stork_logo.png" h="30rem" display={{ base: 'none', md: 'block' }} />
+        <Image src="/img/big_stork_logo.png" maxH="35rem" />
       </Flex>
-      <Heading as="h2" size="lg" marginTop={20} textAlign="center">
-        Információk
-      </Heading>
-      <ButtonGroup marginTop={10} justifyContent="center">
-        <LinkButton external newTab={false} href="#esemenyek" variant="outline" colorScheme="brand">
+      <Box
+        shadow="md"
+        borderWidth="1px"
+        borderRadius="md"
+        marginTop={20}
+        bgColor={useColorModeValue('brand.50', 'brand.800')}
+        p={1}
+        pb={10}
+      >
+        <Heading as="h2" size="lg" textAlign="center" id="esemenyek">
           Események
-        </LinkButton>
-      </ButtonGroup>
+        </Heading>
+        <Alert marginTop={4} variant="left-accent" width="fit-content" marginX="auto">
+          <AlertIcon />A változás jogát fenntartjuk! Kísérd figyelemmel az oldal tetején megjelenő értesítéseket!
+        </Alert>
+        <Schedule />
+      </Box>
       <Heading as="h2" size="lg" marginTop={20} textAlign="center">
         Feladatok
       </Heading>
       <Paragraph textAlign="center">Három típusú feladatot tudtok teljesíteni. Ezekhez AuthSch fiók használata szükséges!</Paragraph>
-      <ButtonGroup marginTop={10} justifyContent="center">
-        <LinkButton href="/riddles" variant="outline" colorScheme="brand">
+      <ButtonGroup marginTop={4} justifyContent="center">
+        <LinkButton href="/riddles" colorScheme="brand">
           Riddle
         </LinkButton>
-        <LinkButton href="/bucketlist" variant="outline" colorScheme="brand">
+        <LinkButton href="/bucketlist" colorScheme="brand">
           Bucketlist
         </LinkButton>
-        <LinkButton href="/qr" variant="outline" colorScheme="brand">
+        <LinkButton href="/qr" colorScheme="brand">
           QR kódok
         </LinkButton>
       </ButtonGroup>
-      <Heading as="h2" size="lg" textAlign="center" marginTop={20} id="esemenyek">
-        Események
-      </Heading>
-      <Alert marginTop={10} variant="left-accent" width="fit-content" marginX="auto">
-        <AlertIcon />A változás jogát fenntartjuk! Kísérd figyelemmel az oldal tetején megjelenő értesítéseket!
-      </Alert>
-      <Schedule />
     </Page>
   )
 }

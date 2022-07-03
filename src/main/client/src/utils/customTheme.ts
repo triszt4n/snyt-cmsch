@@ -116,7 +116,7 @@ const customTheme = extendTheme({
     global: (props: any) => ({
       body: {
         color: mode('gray.900', 'whiteAlpha.900')(props),
-        bg: mode('brand.50', 'brand.900')(props)
+        bg: mode('light', 'brand.900')(props)
       }
     })
   },
@@ -133,7 +133,8 @@ const customTheme = extendTheme({
       800: '#0f4e35',
       900: '#08271b'
     },
-    kirDev: '#F15A29'
+    kirDev: '#F15A29',
+    light: '#e6fcee'
   },
   components: {
     Heading: {

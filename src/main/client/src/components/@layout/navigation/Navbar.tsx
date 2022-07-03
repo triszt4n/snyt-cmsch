@@ -31,7 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Link to="/">
-            <Image src={`/img/${useColorModeValue('navbar_logo.png', 'navbar_logo_white.png')}`} width="12.938rem" />
+            <Image src={`/img/${useColorModeValue('navbar_logo.png', 'navbar_logo_white.png')}`} />
           </Link>
         </Flex>
         <Flex display={{ base: 'none', md: 'flex' }} flex={{ base: 1 }} justify={{ base: 'center', md: 'flex-end' }}>
