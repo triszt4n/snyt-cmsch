@@ -7,9 +7,9 @@ import { EventsView } from 'types/dto/events'
 import { API_BASE_URL } from 'utils/configurations'
 
 const prettyPrintInterval = (ts1: number, ts2: number): string => {
-  const date1 = new Date(ts1)
-  const date2 = new Date(ts2)
-  return `${date1.getHours()}:${date1.getMinutes()} - ${date2.getHours}:${date2.getMinutes()}`
+  const date1 = new Date(ts1 * 1000)
+  const date2 = new Date(ts2 * 1000)
+  return `${date1.getHours()}:${date1.getMinutes()}—${date2.getHours()}:${date2.getMinutes()}`
 }
 
 export const Schedule = () => {
@@ -45,18 +45,17 @@ export const Schedule = () => {
               {eventsList.allEvents
                 .filter((event) => event.category === key)
                 .map((event) => (
-                  <HStack gap={4} key={event.title} fontSize="xl">
+                  <HStack gap={4} key={event.title} fontSize="lg">
                     <VStack>
                       <Text color={useColorModeValue('brand.500', 'brand.600')}>
                         {prettyPrintInterval(event.timestampStart, event.timestampEnd)}
                       </Text>
-                      <Text color="gray.500">{event.place}</Text>
+                      <Text>{event.place}</Text>
                     </VStack>
-                    <HStack flexDir={{ base: 'column', md: 'row' }}>
+                    <VStack>
                       <Text>{event.title}</Text>
-                      <Text display={{ base: 'none', md: 'inline' }}>&bull;</Text>
-                      <Text color="gray.500">{event.previewDescription}</Text>
-                    </HStack>
+                      <Text fontSize="sm">{event.previewDescription}</Text>
+                    </VStack>
                   </HStack>
                 ))}
             </VStack>
