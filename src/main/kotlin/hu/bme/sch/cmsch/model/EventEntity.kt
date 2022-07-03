@@ -35,7 +35,7 @@ data class EventEntity(
 
         @JsonView(value = [ Edit::class, Preview::class, FullDetails::class ])
         @Column(nullable = false)
-        @property:GenerateInput(maxLength = 64, order = 3, label = "Kategória")
+        @property:GenerateInput(maxLength = 64, order = 3, label = "Nap", note = "Pl. 'Csütörtök', lényeg, hogy nagybetűs és teljes nap neve. Legutolsó lehetséges érték: Vasárnap.")
         @property:GenerateOverview(visible = false)
         @property:ImportFormat(ignore = false, columnId = 2)
         var category: String = "",

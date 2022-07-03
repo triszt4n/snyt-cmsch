@@ -68,6 +68,7 @@
                 <a href="#" th:if="${(userEntity.isStaff() || userEntity.isAdmin()) && userEntity.groupName != ''}" th:href="@{/admin/control/members-of-my-group}"><span class="material-icons fix-icons">group</span> Tanköröm tagjai</a>
 
                 <h2 th:if="${userEntity.isAdmin() || userEntity.getGrantTracker()}">Admin</h2>
+                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantMedia()}" th:href="@{/admin/control/events}"><span class="material-icons fix-icons">event</span> Események</a>
                 <a href="#" th:if="${userEntity.isAdmin()}" th:href="@{/admin/control/files}"><span class="material-icons fix-icons">folder</span> Fájlok</a>
                 <a href="#" th:if="${userEntity.isAdmin()}" th:href="@{/admin/control/config}"><span class="material-icons fix-icons">settings</span> Beállítások</a>
 
