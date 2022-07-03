@@ -42,7 +42,7 @@ export const RiddleCategoryList: React.FC<RiddleListProps> = (props) => {
 
   function onRiddleCategoryClick(nextRiddle?: number) {
     if (nextRiddle) {
-      navigate(`/riddleok/${nextRiddle}`)
+      navigate(`/riddles/${nextRiddle}`)
     } else {
       toast({
         title: 'Mindet megcsináltad!',

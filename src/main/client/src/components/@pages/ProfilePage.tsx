@@ -30,7 +30,7 @@ const challenges = (profile: ProfileDTO) => [
     name: 'Riddle',
     completed: profile?.completedRiddleCount,
     total: profile?.totalRiddleCount,
-    link: '/riddleok',
+    link: '/riddles',
     percentage: profile?.totalRiddleCount === 0 ? 0 : (profile?.completedRiddleCount / profile?.totalRiddleCount) * 100
   },
   {
@@ -108,8 +108,8 @@ export const ProfilePage: React.FC<ProfilePageProps> = (props) => {
             </LinkButton>
           )}
           {profile?.groupSelectionAllowed && (
-            <LinkButton colorScheme="brand" href="/profil/tankor-modositas">
-              Tankör módosítása
+            <LinkButton colorScheme="brand" href="/profile/edit-group">
+              Kör módosítása
             </LinkButton>
           )}
           <Button colorScheme="brand" variant="outline" onClick={logout}>

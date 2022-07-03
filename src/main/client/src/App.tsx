@@ -1,5 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { IndexLayout } from 'components/@layout/IndexLayout'
+import { NotFoundPage } from 'components/@pages/NotFoundPage'
 import { ProfilePage } from 'components/@pages/ProfilePage'
 import { QRList } from 'components/@pages/QRList'
 import { QRScan } from 'components/@pages/QRScan'
@@ -30,18 +31,18 @@ export function App() {
                   {/*Főoldal*/}
                   <Route index element={<Home />} />
                   {/*Profil*/}
-                  <Route path="profil">
-                    <Route path="tankor-modositas" element={<GroupSelectionPage />} />
+                  <Route path="profile">
+                    <Route path="edit-group" element={<GroupSelectionPage />} />
                     <Route index element={<ProfilePage />} />
                   </Route>
                   {/*Riddle*/}
-                  <Route path="riddleok">
+                  <Route path="riddles">
                     <Route path=":id" element={<RiddlePage />} />
                     <Route index element={<RiddleCategoryList />} />
                   </Route>
                   {/*BucketList*/}
                   <Route path="bucketlist">
-                    <Route path="kategoria/:id" element={<AchievementCategoryPage />} />
+                    <Route path="cat/:id" element={<AchievementCategoryPage />} />
                     <Route path=":id" element={<AchievementPage />} />
                     <Route index element={<AchievementCategoryList />} />
                   </Route>
@@ -52,9 +53,8 @@ export function App() {
                     <Route path="scan" element={<QRScan />} />
                   </Route>
                   {/*Error*/}
-                  <Route path="error">
-                    <Route index element={<ErrorPage />} />
-                  </Route>
+                  <Route path="error" element={<ErrorPage />} />
+                  <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>
             </IndexLayout>

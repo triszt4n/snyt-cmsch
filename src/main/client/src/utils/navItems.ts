@@ -8,7 +8,7 @@ export const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Riddle',
-    href: '/riddleok',
+    href: '/riddles',
     loginRequired: true
   },
   {
@@ -18,7 +18,7 @@ export const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Profil',
-    href: '/profil',
+    href: '/profile',
     loginRequired: true
   }
 ]

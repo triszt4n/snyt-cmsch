@@ -77,7 +77,7 @@ export const RiddlePage: React.FC<RiddleProps> = (props) => {
             }) || null
         }
         if (res.data.status === RiddleSubmissonStatus.CORRECT && res.data.nextId) {
-          navigate(`/riddleok/${res.data.nextId}`)
+          navigate(`/riddles/${res.data.nextId}`)
           const input = document.getElementById('solution') as HTMLInputElement
           input.value = ''
           axios.get<Riddle>(`${API_BASE_URL}/api/riddle/${res.data.nextId}`).then((resp) => {
@@ -92,7 +92,7 @@ export const RiddlePage: React.FC<RiddleProps> = (props) => {
           })
         }
         if (res.data.status === RiddleSubmissonStatus.CORRECT && !res.data.nextId) {
-          navigate(`/riddleok/`)
+          navigate(`/riddles/`)
           toast({
             title: 'Minden megvan!',
             description: 'Igazán ügyi voltál!',
@@ -122,7 +122,7 @@ export const RiddlePage: React.FC<RiddleProps> = (props) => {
   const breadcrumbItems = [
     {
       title: 'Riddle',
-      to: '/riddleok'
+      to: '/riddles'
     },
     {
       title: riddle.title

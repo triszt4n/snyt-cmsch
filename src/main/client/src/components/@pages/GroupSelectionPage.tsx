@@ -38,7 +38,7 @@ export const GroupSelectionPage: React.FC = () => {
             case GroupChangeStatus.OK:
               updateProfile()
               throwError('Sikeres mentés!', { toast: true, toastStatus: 'success' })
-              navigate('/profil')
+              navigate('e')
               break
             case GroupChangeStatus.INVALID_GROUP:
               setError('Érvénytelen kör!')
@@ -91,7 +91,7 @@ export const GroupSelectionPage: React.FC = () => {
             </Select>
           </FormControl>
           <ButtonGroup spacing={4}>
-            <LinkButton href="/profil" colorScheme="red" variant="outline">
+            <LinkButton href="/profile" colorScheme="red" variant="outline">
               Mégse
             </LinkButton>
             <Button onClick={onSubmit} colorScheme="brand">

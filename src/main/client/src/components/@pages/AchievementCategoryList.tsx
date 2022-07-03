@@ -70,7 +70,7 @@ export const AchievementCategoryList: React.FC = (props) => {
               borderRadius="md"
               _hover={{ bgColor: useColorModeValue('brand.300', 'brand.700') }}
             >
-              <Link to={`/bucketlist/kategoria/${category.categoryId}`}>
+              <Link to={`/bucketlist/cat/${category.categoryId}`}>
                 <Flex align="center" justifyContent="space-between">
                   <Text fontWeight="bold" fontSize="xl">
                     {category.name}

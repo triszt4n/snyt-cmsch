@@ -174,7 +174,7 @@ export const AchievementPage: React.FC = (props) => {
     },
     {
       title: categoryName,
-      to: `/bucketlist/kategoria/${achDetails.achievement?.categoryId}`
+      to: `/bucketlist/cat/${achDetails.achievement?.categoryId}`
     },
     {
       title: achDetails.achievement?.title

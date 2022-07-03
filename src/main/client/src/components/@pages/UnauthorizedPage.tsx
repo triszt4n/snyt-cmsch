@@ -10,7 +10,7 @@ export const UnauthorizedPage: React.FC = () => {
     <Page>
       <Helmet title="Error 403" />
       <Heading textAlign="center">Bejelentkezés szükséges</Heading>
-      <Text textAlign="center" color="gray.500" marginTop={10}>
+      <Text textAlign="center" marginTop={10}>
         Az oldal eléréséhez be kell jelentkezned!
       </Text>
       <ButtonGroup justifyContent="center" marginTop={10}>
