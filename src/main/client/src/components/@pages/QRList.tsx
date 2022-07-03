@@ -7,6 +7,7 @@ import { FaQrcode, FaStamp } from 'react-icons/fa'
 import { ProfileDTO } from 'types/dto/profile'
 import { TokenDTO } from 'types/dto/token'
 import { API_BASE_URL } from 'utils/configurations'
+import { useAuthContext } from 'utils/useAuthContext'
 import { Loading } from '../../utils/Loading'
 import { useServiceContext } from '../../utils/useServiceContext'
 import { LinkButton } from '../@commons/LinkButton'
@@ -22,6 +23,7 @@ interface TokenProgress {
 
 export const QRList: React.FC = (props) => {
   const { throwError } = useServiceContext()
+  const { profile } = useAuthContext()
   const [progress, setProgress] = useState<TokenProgress>({
     totalTokenCount: 0,
     minTokenToComplete: 0,
@@ -55,15 +57,15 @@ export const QRList: React.FC = (props) => {
 
   return (
     <Page {...props} loginRequired groupRequired>
-      <Helmet title="QR pecsétek" />
-      <Heading as="h1">QR kód pecsétek</Heading>
+      <Helmet title="QR kódok" />
+      <Heading as="h1">QR kódok</Heading>
       <ButtonGroup mt="5">
         <LinkButton colorScheme="brand" leftIcon={<FaQrcode />} href="/qr/scan">
           QR kód beolvasása
         </LinkButton>
-        {progress?.groupName === 'Kiállító' && (
+        {profile?.role === 'ADMIN' && (
           <LinkButton colorScheme="brand" leftIcon={<FaStamp />} href="/control/stamps" external newTab={false}>
-            Pecsét statisztika
+            Beolvasási statisztika
           </LinkButton>
         )}
       </ButtonGroup>

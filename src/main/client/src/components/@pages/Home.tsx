@@ -64,7 +64,7 @@ export const Home: React.FC = () => {
           Bucketlist
         </LinkButton>
         <LinkButton href="/qr" variant="outline" colorScheme="brand">
-          QR pecsétek
+          QR kódok
         </LinkButton>
       </ButtonGroup>
       <Heading as="h2" size="lg" textAlign="center" marginTop={20} id="esemenyek">

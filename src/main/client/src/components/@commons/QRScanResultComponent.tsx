@@ -24,7 +24,7 @@ export const QRScanResultComponent: React.FC<QrScanResultProps> = ({ response }:
   const getInfoText = () => {
     switch (response.status) {
       case ScanStatus.SCANNED:
-        return 'Állomás lepecsételve'
+        return 'Állomás QR kódja megszerezve'
       case ScanStatus.ALREADY_SCANNED:
         return 'Ezt a kódot már egyszer beolvastad'
       case ScanStatus.WRONG:
