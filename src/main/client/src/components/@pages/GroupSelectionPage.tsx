@@ -38,7 +38,7 @@ export const GroupSelectionPage: React.FC = () => {
             case GroupChangeStatus.OK:
               updateProfile()
               throwError('Sikeres mentés!', { toast: true, toastStatus: 'success' })
-              navigate('e')
+              navigate('/profile')
               break
             case GroupChangeStatus.INVALID_GROUP:
               setError('Érvénytelen kör!')
