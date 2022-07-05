@@ -20,9 +20,14 @@ services:
       - "3030:80"
     networks:
       - snyt_net
+    volumes:
+      - cdn_folder:/pv
 networks:
   snyt_net:
 volumes:
   database_folder:
     external:
       name: snyt_db
+  cdn_folder:
+    external:
+      name: snyt_cdn
