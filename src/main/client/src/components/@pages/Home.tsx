@@ -163,9 +163,6 @@ export const Home: React.FC = () => {
       </Heading>
       <Paragraph textAlign="center">Három típusú feladatot tudtok teljesíteni. Ezekhez AuthSch fiók használata szükséges!</Paragraph>
       <ButtonGroup marginTop={4} justifyContent="center">
-        <LinkButton href="/riddles" colorScheme="brand">
-          Riddle
-        </LinkButton>
         <LinkButton href="/bucketlist" colorScheme="brand">
           Bucketlist
         </LinkButton>
