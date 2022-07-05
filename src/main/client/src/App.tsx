@@ -5,8 +5,6 @@ import { ProfilePage } from 'components/@pages/ProfilePage'
 import { QRList } from 'components/@pages/QRList'
 import { QRScan } from 'components/@pages/QRScan'
 import { QRScanResult } from 'components/@pages/QRScanResult'
-import { RiddleCategoryList } from 'components/@pages/RiddleCategoryList'
-import { RiddlePage } from 'components/@pages/RiddlePage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AchievementCategoryList } from './components/@pages/AchievementCategoryList'
 import { AchievementCategoryPage } from './components/@pages/AchievementCategoryPage'
@@ -34,11 +32,6 @@ export function App() {
                   <Route path="profile">
                     <Route path="edit-group" element={<GroupSelectionPage />} />
                     <Route index element={<ProfilePage />} />
-                  </Route>
-                  {/*Riddle*/}
-                  <Route path="riddles">
-                    <Route path=":id" element={<RiddlePage />} />
-                    <Route index element={<RiddleCategoryList />} />
                   </Route>
                   {/*BucketList*/}
                   <Route path="bucketlist">
