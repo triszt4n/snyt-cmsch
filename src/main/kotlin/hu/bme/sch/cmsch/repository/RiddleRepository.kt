@@ -9,4 +9,5 @@ interface RiddleRepository : CrudRepository<RiddleEntity, Int> {
     override fun findAll(): List<RiddleEntity>
     fun findAllByCategoryId(categoryId: Int): List<RiddleEntity>
     fun findAllByCategoryIdIn(categories: List<Int>): List<RiddleEntity>
+    fun findAllBySolution(solution: String): List<RiddleEntity>
 }

@@ -51,8 +51,8 @@ class ProfileApiController(
             fallbackGroup = groupRepository.findByName(fallbackGroup).map { it.id }.orElse(null),
 
             tokens = tokenService.getTokensForUser(user),
-            collectedTokenCount = tokenService.getTokensForUserWithCategory(user,"default"),
-            totalTokenCount = tokenService.getTotalTokenCountWithCategory("default"),
+            collectedTokenCount = tokenService.getTokensForUser(user).size,
+            totalTokenCount = tokenService.getTotalTokenCount(),
 
             totalAchievementCount = achievementsService.getTotalAchievementsForUser(user),
             submittedAchievementCount = achievementsService.getSubmittedAchievementsForUser(user),

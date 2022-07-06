@@ -7,7 +7,7 @@ export const NAV_ITEMS: Array<NavItem> = [
     loginRequired: true
   },
   {
-    label: 'QR kódok',
+    label: 'Kódgyűjtés',
     href: '/qr',
     loginRequired: true
   },

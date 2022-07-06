@@ -1,13 +1,12 @@
 import { ButtonGroup, Heading, Stack } from '@chakra-ui/react'
 import axios from 'axios'
 import { StampComponent } from 'components/@commons/StampComponent'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { FaQrcode, FaStamp } from 'react-icons/fa'
+import { FaQrcode } from 'react-icons/fa'
 import { ProfileDTO } from 'types/dto/profile'
 import { TokenDTO } from 'types/dto/token'
 import { API_BASE_URL } from 'utils/configurations'
-import { useAuthContext } from 'utils/useAuthContext'
 import { Loading } from '../../utils/Loading'
 import { useServiceContext } from '../../utils/useServiceContext'
 import { LinkButton } from '../@commons/LinkButton'
@@ -21,9 +20,8 @@ interface TokenProgress {
   groupName: string
 }
 
-export const QRList: React.FC = (props) => {
+export const QRList = () => {
   const { throwError } = useServiceContext()
-  const { profile } = useAuthContext()
   const [progress, setProgress] = useState<TokenProgress>({
     totalTokenCount: 0,
     minTokenToComplete: 0,
@@ -56,18 +54,13 @@ export const QRList: React.FC = (props) => {
   if (loading) return <Loading />
 
   return (
-    <Page {...props} loginRequired groupRequired>
+    <Page loginRequired groupRequired>
       <Helmet title="QR kódok" />
       <Heading as="h1">QR kódok</Heading>
       <ButtonGroup mt="5">
         <LinkButton colorScheme="brand" leftIcon={<FaQrcode />} href="/qr/scan">
           QR kód beolvasása
         </LinkButton>
-        {profile?.role === 'ADMIN' && (
-          <LinkButton colorScheme="brand" leftIcon={<FaStamp />} href="/control/stamps" external newTab={false}>
-            Beolvasási statisztika
-          </LinkButton>
-        )}
       </ButtonGroup>
       {progress.tokens.length > 0 && (
         <>

@@ -29,22 +29,17 @@ data class RiddleEntity(
 
     @JsonView(value = [ Edit::class, Preview::class, FullDetails::class ])
     @Column(nullable = false)
-    @property:GenerateInput(type = INPUT_TYPE_FILE, order = 2, label = "A képrejtvény", fileType = "image")
-    @property:GenerateOverview(visible = false)
     var imageUrl: String = "",
 
     @JsonView(value = [ Edit::class ])
     @Column(nullable = false)
-    @property:GenerateInput(maxLength = 128, order = 3, label = "Megoldás")
+    @property:GenerateInput(maxLength = 128, order = 3, label = "Token")
     @property:GenerateOverview(visible = false)
     @property:ImportFormat(ignore = false, columnId = 1)
     var solution: String = "",
 
     @JsonView(value = [ Edit::class ])
     @Column(nullable = false)
-    @property:GenerateInput(maxLength = 128, order = 4, label = "Hint")
-    @property:GenerateOverview(visible = false)
-    @property:ImportFormat(ignore = false, columnId = 2)
     var hint: String = "",
 
     @Column(nullable = false)

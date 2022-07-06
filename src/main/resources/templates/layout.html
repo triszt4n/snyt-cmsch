@@ -52,17 +52,10 @@
                 <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantCreateAchievement() || userEntity.getGrantMedia()}" th:href="@{/admin/control/group-toplist}"><span class="material-icons fix-icons">leaderboard</span> Tankör toplista</a>
                 <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantCreateAchievement()}" th:href="@{/admin/control/check-ratings}"><span class="material-icons fix-icons">fact_check</span> Pontok ellenőrzése</a>
 
-                <h2 th:if="${userEntity.isAdmin() || userEntity.getGrantRiddle()}">Riddle</h2>
-                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantRiddle()}" th:href="@{/admin/control/riddles}"><span class="material-icons fix-icons">task</span> Riddleök</a>
-                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantRiddle()}" th:href="@{/admin/control/riddle-categories}"><span class="material-icons fix-icons">category</span> Riddle kategóriák</a>
-                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantRiddle()}" th:href="@{/admin/control/riddles-by-users}"><span class="material-icons fix-icons">checklist_rtl</span> Riddle beadások</a>
-
-                <h2 th:if="${userEntity.isAdmin() || userEntity.getGrantMedia()}">Tokenek</h2>
-                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantMedia()}" th:href="@{/admin/control/tokens}"><span class="material-icons fix-icons">token</span> Tokenek</a>
-                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantMedia()}" th:href="@{/admin/control/token-properties-user}"><span class="material-icons fix-icons">local_activity</span> Fehasználói tokenek</a>
-                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantMedia()}" th:href="@{/admin/control/token-properties-group}"><span class="material-icons fix-icons">local_activity</span> Csoportos tokenek</a>
-                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantMedia()}" th:href="@{/admin/control/token-properties-of-groups}"><span class="material-icons fix-icons">file_download</span> Jelenléti export</a>
-                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantMedia()}" th:href="@{/admin/control/token-properties-type}"><span class="material-icons fix-icons">analytics</span> Token statisztika</a>
+                <h2 th:if="${userEntity.isAdmin() || userEntity.getGrantRiddle()}">QR</h2>
+                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantRiddle()}" th:href="@{/admin/control/riddles}"><span class="material-icons fix-icons">task</span> Tokenek</a>
+                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantRiddle()}" th:href="@{/admin/control/riddle-categories}"><span class="material-icons fix-icons">category</span> Token kategóriák</a>
+                <a href="#" th:if="${userEntity.isAdmin() || userEntity.getGrantRiddle()}" th:href="@{/admin/control/riddles-by-users}"><span class="material-icons fix-icons">checklist_rtl</span> Token beolvasások</a>
 
                 <h2 th:if="${userEntity.isAdmin() || userEntity.getGrantGroupDebtsMananger()}">Tankör</h2>
                 <a href="#" th:if="${(userEntity.isStaff() || userEntity.isAdmin()) && userEntity.groupName != ''}" th:href="@{/admin/control/members-of-my-group}"><span class="material-icons fix-icons">group</span> Tanköröm tagjai</a>

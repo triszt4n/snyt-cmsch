@@ -24,24 +24,16 @@ const val SESSION_TOKEN_COLLECTOR_ATTRIBUTE = "TOKEN_COLLECTOR_ATTRIBUTE"
 @RequestMapping("/api")
 @CrossOrigin(origins = ["\${cmsch.frontend.production-url}"], allowedHeaders = ["*"])
 class TokenApiController(
-        private val tokens: TokenCollectorService,
-        @Value("\${cmsch.token.ownership:USER}") private val tokenOwnershipMode: OwnershipType
+    private val tokens: TokenCollectorService,
+    @Value("\${cmsch.token.ownership:USER}") private val tokenOwnershipMode: OwnershipType
 ) {
 
     @ResponseBody
     @JsonView(FullDetails::class)
     @PostMapping("/token/{token}")
     fun submitToken(@PathVariable token: String, request: HttpServletRequest): TokenSubmittedView {
-        return when (tokenOwnershipMode) {
-            OwnershipType.USER -> {
-                val (title, status) = tokens.collectToken(request.getUser(), token)
-                TokenSubmittedView(status, title)
-            }
-            OwnershipType.GROUP -> {
-                val (title, status) = tokens.collectTokenForGroup(request.getUser(), token)
-                TokenSubmittedView(status, title)
-            }
-        }
+        val (title, status) = tokens.collectToken(request.getUser(), token)
+        return TokenSubmittedView(status, title)
     }
 
     @GetMapping("/token-after-login")
@@ -66,18 +58,15 @@ class TokenApiController(
         }
     }
 
-    private fun collectToken(request: HttpServletRequest, token: String) =
-        when (tokenOwnershipMode) {
-            OwnershipType.USER -> {
-                val (title, status) = tokens.collectToken(request.getUser(), token)
-                "redirect:/qr-scanned?status=${status.name}" +
-                        "&title=${URLEncoder.encode(title ?: "", StandardCharsets.UTF_8.toString())}"
-            }
-            OwnershipType.GROUP -> {
-                val (title, status) = tokens.collectTokenForGroup(request.getUser(), token)
-                "redirect:/qr-scanned?status=${status.name}" +
-                        "&title=${URLEncoder.encode(title ?: "", StandardCharsets.UTF_8.toString())}"
-            }
-        }
+    private fun collectToken(request: HttpServletRequest, token: String): String {
+        val (title, status) = tokens.collectToken(request.getUser(), token)
+        return "redirect:/qr-scanned?status=${status.name}" + "&title=${
+            URLEncoder.encode(
+                title ?: "",
+                StandardCharsets.UTF_8.toString()
+            )
+        }"
+
+    }
 
 }
