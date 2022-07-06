@@ -19,7 +19,9 @@ export const Schedule = ({ eventsList }: { eventsList: EventsView }) => {
     <Tabs defaultIndex={defaultDayIndex === -1 ? 0 : defaultDayIndex} isFitted mt={4} variant="soft-rounded" colorScheme="green">
       <TabList>
         {keys.map((key) => (
-          <Tab key={key}>{useBreakpointValue({ base: key.substring(0, key === 'Csütörtök' ? 4 : 3) + '.', sm: key })}</Tab>
+          <Tab key={key} color="brand.400">
+            {useBreakpointValue({ base: key.substring(0, key === 'Csütörtök' ? 4 : 3) + '.', sm: key })}
+          </Tab>
         ))}
       </TabList>
 
