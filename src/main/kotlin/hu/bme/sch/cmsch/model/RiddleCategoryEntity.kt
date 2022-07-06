@@ -37,7 +37,7 @@ data class RiddleCategoryEntity(
 
     @JsonView(value = [ Edit::class ])
     @Column(nullable = false)
-    @property:GenerateInput(type = INPUT_TYPE_SWITCH, order = 3, label = "Látható-e a riddle kategória")
+    @property:GenerateInput(type = INPUT_TYPE_SWITCH, order = 3, label = "Látható-e a kategória")
     @property:GenerateOverview(columnName = "Látható", order = 3, centered = true, renderer = OVERVIEW_TYPE_BOOLEAN)
     @property:ImportFormat(ignore = false, columnId = 2, type = IMPORT_BOOLEAN)
     var visible: Boolean = false,
