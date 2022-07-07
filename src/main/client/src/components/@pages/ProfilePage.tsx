@@ -21,7 +21,6 @@ import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import { ProfileDTO, RoleType } from 'types/dto/profile'
 import { useAuthContext } from 'utils/useAuthContext'
-import { Loading } from '../../utils/Loading'
 import { LinkButton } from '../@commons/LinkButton'
 import { Page } from '../@layout/Page'
 
@@ -79,12 +78,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = (props) => {
     updateProfile()
   }, [])
 
-  if (profile === undefined)
-    return (
-      <Loading>
-        <ProfilePageSkeleton {...props} />
-      </Loading>
-    )
+  if (profile === undefined) return <div>Betöltés...</div>
 
   return (
     <Page {...props} loginRequired>

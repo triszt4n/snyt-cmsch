@@ -9,7 +9,6 @@ import { FaArrowLeft, FaQrcode } from 'react-icons/fa'
 import QRreader from 'react-qr-reader'
 import { ScanResponseDTO, ScanStatus } from 'types/dto/token'
 import { API_BASE_URL } from 'utils/configurations'
-import { Loading } from 'utils/Loading'
 import { useServiceContext } from '../../utils/useServiceContext'
 
 enum ScanViewState {
@@ -62,7 +61,7 @@ export const QRScan: React.FC = (props) => {
     setState({ state: ScanViewState.Scanning, response: undefined })
   }
 
-  if (state.state == ScanViewState.Loading) return <Loading timeout={0} />
+  if (state.state == ScanViewState.Loading) return <div>Betöltés...</div>
 
   return (
     <Page {...props} loginRequired groupRequired>

@@ -1,14 +1,13 @@
-import { Flex, Heading, Stack, VStack, Box, Skeleton, Text, useColorModeValue } from '@chakra-ui/react'
-import { Page } from '../@layout/Page'
-import React, { useEffect, useState } from 'react'
+import { Box, Flex, Heading, Text, useColorModeValue, VStack } from '@chakra-ui/react'
 import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Page } from '../@layout/Page'
 
-import { API_BASE_URL } from '../../utils/configurations'
-import { AchievementCategory, AllAchievementCategories } from '../../types/dto/achievements'
-import { Loading } from '../../utils/Loading'
-import { useServiceContext } from '../../utils/useServiceContext'
-import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import { Link } from 'react-router-dom'
+import { AchievementCategory, AllAchievementCategories } from '../../types/dto/achievements'
+import { API_BASE_URL } from '../../utils/configurations'
+import { useServiceContext } from '../../utils/useServiceContext'
 
 const progress = (category: AchievementCategory) => {
   return (category.approved + category.notGraded) / category.sum
@@ -43,18 +42,7 @@ export const AchievementCategoryList: React.FC = (props) => {
       })
   }, [])
 
-  if (loading)
-    return (
-      <Loading>
-        {[0, 1, 2].map((idx) => (
-          <Stack key={idx} mt="20px">
-            <Skeleton height="40px" />
-            <Skeleton height="20px" />
-            <Skeleton height="20px" />
-          </Stack>
-        ))}
-      </Loading>
-    )
+  if (loading) return <div>Betöltés...</div>
   return (
     <Page {...props} loginRequired groupRequired>
       <Helmet title="Bucketlist kategóriák" />

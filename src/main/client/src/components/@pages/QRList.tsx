@@ -7,7 +7,6 @@ import { FaQrcode } from 'react-icons/fa'
 import { ProfileDTO } from 'types/dto/profile'
 import { TokenDTO } from 'types/dto/token'
 import { API_BASE_URL } from 'utils/configurations'
-import { Loading } from '../../utils/Loading'
 import { useServiceContext } from '../../utils/useServiceContext'
 import { LinkButton } from '../@commons/LinkButton'
 import { Page } from '../@layout/Page'
@@ -51,7 +50,7 @@ export const QRList = () => {
       })
   }, [])
 
-  if (loading) return <Loading />
+  if (loading) return <div>Betöltés...</div>
 
   return (
     <Page loginRequired groupRequired>

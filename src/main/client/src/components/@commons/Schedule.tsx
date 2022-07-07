@@ -1,6 +1,6 @@
 import { Flex, HStack, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useBreakpointValue, VStack } from '@chakra-ui/react'
 import { useColorModeValue } from '@chakra-ui/system'
-import { EVENTS } from 'content/events'
+import { EVENTDAYS } from 'content/events'
 import { format } from 'date-fns'
 import { hu } from 'date-fns/locale'
 import { EventsView } from 'types/dto/events'
@@ -11,14 +11,13 @@ export const prettyPrintInterval = (ts1: number, ts2: number): string[] => [
 ]
 
 export const Schedule = ({ eventsList }: { eventsList: EventsView }) => {
-  const keys = Array.from(EVENTS.keys())
   const today = format(new Date(), 'EEEE', { locale: hu })
-  const defaultDayIndex = keys.indexOf(today[0].toUpperCase() + today.substring(1))
+  const defaultDayIndex = EVENTDAYS.indexOf(today[0].toUpperCase() + today.substring(1))
 
   return (
     <Tabs defaultIndex={defaultDayIndex === -1 ? 0 : defaultDayIndex} isFitted mt={4} variant="soft-rounded" colorScheme="green">
       <TabList>
-        {keys.map((key) => (
+        {EVENTDAYS.map((key) => (
           <Tab key={key} color="brand.400">
             {useBreakpointValue({ base: key.substring(0, key === 'Csütörtök' ? 4 : 3) + '.', sm: key })}
           </Tab>
@@ -26,7 +25,7 @@ export const Schedule = ({ eventsList }: { eventsList: EventsView }) => {
       </TabList>
 
       <TabPanels>
-        {keys.map((key) => {
+        {EVENTDAYS.map((key) => {
           const result = eventsList.allEvents.filter((event) => event.category === key)
           return (
             <TabPanel key={key}>

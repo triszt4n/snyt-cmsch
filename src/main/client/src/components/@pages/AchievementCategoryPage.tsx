@@ -1,16 +1,15 @@
-import { Box, Heading, VStack, Flex, Stack, Skeleton, Text, useColorModeValue } from '@chakra-ui/react'
-import { Link, useParams } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
+import { Box, Flex, Heading, Text, useColorModeValue, VStack } from '@chakra-ui/react'
 import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
+import { CustomBreadcrumb } from 'components/@commons/CustomBreadcrumb'
+import { Page } from 'components/@layout/Page'
+import { Helmet } from 'react-helmet'
+import { API_BASE_URL } from 'utils/configurations'
+import { AchievementCategory } from '../../types/dto/achievements'
 import { useServiceContext } from '../../utils/useServiceContext'
 import { AchievementStatusBadge } from '../@commons/AchievementStatusBadge'
-import { AchievementCategory } from '../../types/dto/achievements'
-import { API_BASE_URL } from 'utils/configurations'
-import { Page } from 'components/@layout/Page'
-import { Loading } from 'utils/Loading'
-import { CustomBreadcrumb } from 'components/@commons/CustomBreadcrumb'
-import { Helmet } from 'react-helmet'
 
 export const AchievementCategoryPage: React.FC = (props) => {
   const { throwError } = useServiceContext()
@@ -28,16 +27,7 @@ export const AchievementCategoryPage: React.FC = (props) => {
       })
   }, [])
 
-  if (!category) {
-    return (
-      <Loading>
-        <Stack marginTop="20px">
-          <Skeleton height="20px" />
-          <Skeleton height="20px" />
-        </Stack>
-      </Loading>
-    )
-  }
+  if (!category) return <div>Betöltés...</div>
 
   const breadcrumbItems = [
     {

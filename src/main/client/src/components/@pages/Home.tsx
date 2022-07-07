@@ -1,18 +1,5 @@
 import { ArrowDownIcon, InfoIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  chakra,
-  Flex,
-  Heading,
-  HStack,
-  Image,
-  Text,
-  useBreakpointValue,
-  useColorModeValue,
-  VStack
-} from '@chakra-ui/react'
+import { Box, Button, ButtonGroup, chakra, Flex, Heading, HStack, Image, Text, useColorModeValue, VStack } from '@chakra-ui/react'
 import axios from 'axios'
 import { SimpleLink } from 'components/@commons/SimpleLink'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -57,20 +44,15 @@ export const Home: React.FC = () => {
       }
       setEventsList(res.data)
       setCurrentEvent(
-        eventsList.allEvents
+        res.data.allEvents
           .sort((a, b) => a.timestampStart - b.timestampStart)
-          .find((event) => {
-            return event.timestampEnd * 1000 > new Date().getTime()
-          })
+          .find((event) => event.timestampEnd * 1000 > new Date().getTime())
       )
+      setTimeout(() => {
+        setIsVisible(true)
+      }, 400)
     })
   }, [])
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsVisible(true)
-    }, 400)
-  })
 
   return (
     <Page>
@@ -105,7 +87,7 @@ export const Home: React.FC = () => {
         </Flex>
         <Box position="relative" textAlign="center">
           <Image src="/img/big_stork_logo.png" maxH="35rem" />
-          {currentEvent && useBreakpointValue({ base: true, md: false }) && (
+          {currentEvent && (
             <AnimatePresence>
               {isVisible && (
                 <motion.div key="modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -113,7 +95,7 @@ export const Home: React.FC = () => {
                     position="absolute"
                     top="0"
                     left="50%"
-                    transform="translate(-50%, 25%)"
+                    transform="translate(-50%, 15%)"
                     shadow="md"
                     borderRadius="md"
                     bgColor={useColorModeValue('brand.200', 'brand.700')}

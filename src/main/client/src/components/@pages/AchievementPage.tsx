@@ -1,20 +1,18 @@
-import { Box, Button, FormLabel, Heading, Stack, Text, Textarea, Image, useToast, Skeleton, Alert, AlertIcon } from '@chakra-ui/react'
+import { Alert, AlertIcon, Box, Button, FormLabel, Heading, Image, Stack, Text, Textarea, useToast } from '@chakra-ui/react'
 import { chakra } from '@chakra-ui/system'
-import { Page } from '../@layout/Page'
-import React, { useEffect, useState, useRef } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
-import { FilePicker } from '../@commons/FilePicker'
-import { AchievementStatusBadge } from '../@commons/AchievementStatusBadge'
-import { Paragraph } from 'components/@commons/Paragraph'
-import { AchievementFullDetailsView, achievementType, achievementStatus, AchievementCategory } from '../../types/dto/achievements'
-import { API_BASE_URL } from 'utils/configurations'
-import { Loading } from '../../utils/Loading'
-import { useServiceContext } from '../../utils/useServiceContext'
-import { Helmet } from 'react-helmet'
 import { CustomBreadcrumb } from 'components/@commons/CustomBreadcrumb'
+import { Paragraph } from 'components/@commons/Paragraph'
+import React, { useEffect, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet'
+import { useNavigate, useParams } from 'react-router-dom'
+import { API_BASE_URL } from 'utils/configurations'
+import { AchievementCategory, AchievementFullDetailsView, achievementStatus, achievementType } from '../../types/dto/achievements'
+import { useServiceContext } from '../../utils/useServiceContext'
 import { stringifyTimeStamp } from '../../utils/utilFunctions'
+import { AchievementStatusBadge } from '../@commons/AchievementStatusBadge'
+import { FilePicker } from '../@commons/FilePicker'
+import { Page } from '../@layout/Page'
 
 export const AchievementPage: React.FC = (props) => {
   const [achDetails, setAchDetails] = useState<AchievementFullDetailsView | undefined>(undefined)
@@ -66,18 +64,7 @@ export const AchievementPage: React.FC = (props) => {
     getAchievementDetails()
   }, [])
 
-  if (!achDetails) {
-    return (
-      <Loading>
-        <Page {...props}>
-          <Skeleton height="40px" />
-          <Skeleton marginTop="20px" height="20px" />
-          <Skeleton marginTop="8px" height="20px" />
-          <Skeleton marginTop="8px" height="20px" />
-        </Page>
-      </Loading>
-    )
-  }
+  if (!achDetails) return <div>Betöltés...</div>
 
   const textAllowed = achDetails.achievement?.type === achievementType.TEXT || achDetails.achievement?.type === achievementType.BOTH
   const imageAllowed = achDetails.achievement?.type === achievementType.IMAGE || achDetails.achievement?.type === achievementType.BOTH
