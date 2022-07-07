@@ -1,4 +1,4 @@
-import { Stack } from '@chakra-ui/react'
+import { Box, VStack } from '@chakra-ui/react'
 import { LinkButton } from 'components/@commons/LinkButton'
 import React from 'react'
 import { NAV_ITEMS } from '../../../utils/navItems'
@@ -8,14 +8,16 @@ import { AuthButton } from '../../@commons/AuthButton'
 const MobileNav: React.FC = () => {
   const { isLoggedIn } = useAuthContext()
   return (
-    <Stack p={4} display={{ md: 'none' }}>
+    <VStack p={4} display={{ md: 'none' }}>
       {NAV_ITEMS.filter((navItem) => (navItem.loginRequired && isLoggedIn) || !navItem.loginRequired).map((navItem) => (
-        <LinkButton key={navItem.label} href={navItem.href || '#'} leftIcon={navItem.icon} variant="ghost">
-          {navItem.label}
-        </LinkButton>
+        <Box key={navItem.label}>
+          <LinkButton href={navItem.href || '#'} leftIcon={navItem.icon} variant="ghost" className="navitem">
+            {navItem.label}
+          </LinkButton>
+        </Box>
       ))}
       <AuthButton />
-    </Stack>
+    </VStack>
   )
 }
 

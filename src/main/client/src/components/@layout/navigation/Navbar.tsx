@@ -1,5 +1,5 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { Box, Flex, IconButton, Image, useColorModeValue, useDisclosure } from '@chakra-ui/react'
+import { Box, Collapse, Flex, IconButton, Image, useColorModeValue, useDisclosure } from '@chakra-ui/react'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { ColorModeSwitcher } from '../../@commons/ColorModeSwitcher'
@@ -43,7 +43,16 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
           <ColorModeSwitcher />
         </Flex>
       </Flex>
-      <MobileNav />
+      {/*The method in onClick hides the menu items when a menu item is clicked. Works for collapsible items too!*/}
+      <Collapse
+        in={isOpen}
+        animateOpacity
+        onClick={(evt) => {
+          if ((evt.target as Element).closest('.navitem')) onToggle()
+        }}
+      >
+        <MobileNav />
+      </Collapse>
     </Box>
   )
 }

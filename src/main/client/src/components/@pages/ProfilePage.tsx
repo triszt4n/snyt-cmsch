@@ -27,13 +27,6 @@ import { Page } from '../@layout/Page'
 
 const challenges = (profile: ProfileDTO) => [
   {
-    name: 'Riddle',
-    completed: profile?.completedRiddleCount,
-    total: profile?.totalRiddleCount,
-    link: '/riddles',
-    percentage: profile?.totalRiddleCount === 0 ? 0 : (profile?.completedRiddleCount / profile?.totalRiddleCount) * 100
-  },
-  {
     name: 'QR kód',
     completed: profile?.collectedTokenCount,
     total: profile?.totalTokenCount,
